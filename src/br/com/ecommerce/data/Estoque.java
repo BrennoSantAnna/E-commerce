@@ -15,6 +15,24 @@ public class Estoque {
         System.out.println("Produto '" + produto.getNome() + "' adicionado ao estoque!");
     }
 
+    public void removerProduto(int codigoParaRemover) {
+        Produto produtoParaRemover = null;
+
+        for (Produto p : this.listaDeProdutos) {
+            if (p.getCodigo() == codigoParaRemover) {
+                produtoParaRemover = p;
+                break;
+            }
+        }
+
+        if (produtoParaRemover != null) {
+            this.listaDeProdutos.remove(produtoParaRemover);
+            System.out.println("Produto removido: " + produtoParaRemover.getNome());
+        } else {
+            System.out.println("Produto com código " + codigoParaRemover + " não encontrado no estoque.");
+        }
+    }
+
     public ArrayList<Produto> getListaDeProdutos() {
         return this.listaDeProdutos;
     }
