@@ -30,5 +30,7 @@ public class Main {
 
         System.out.println("\n*** Lista original (verificando integridade) ***");
         estoque.listarTodosOsProdutos();
+
+        /* Testando edição do arquivo Main*/
     }
 }
