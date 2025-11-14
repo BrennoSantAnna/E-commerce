@@ -1,5 +1,8 @@
 package br.com.ecommerce.data;
 
+import br.com.ecommerce.algoritmos.ordenacao.MergeSort;
+import br.com.ecommerce.algoritmos.ordenacao.InsertionSort;
+import br.com.ecommerce.algoritmos.ordenacao.SelectionSort;
 import br.com.ecommerce.algoritmos.ordenacao.BubbleSort;
 import br.com.ecommerce.model.Produto;
 import java.util.ArrayList;
@@ -75,6 +78,54 @@ public class Estoque {
         BubbleSort.ordenarPorPreco(listaCopiada);
 
         System.out.println("\n--- Lista de Produtos (Ordenada por preço) ---");
+        for (Produto p : listaCopiada) {
+            System.out.println(p);
+        }
+        System.out.println("------------------------------------------------------------------------------------------------");
+    }
+
+        public void listarProdutosOrdenadosPorQuantidade() {
+            if (this.listaDeProdutos.isEmpty()) {
+                System.out.println("O estoque está vazio. Nada para ordenar.");
+                return;
+            }
+
+        ArrayList<Produto> listaCopiada = new ArrayList<>(this.listaDeProdutos);
+        SelectionSort.ordenarPorQuantidade(listaCopiada);
+
+        System.out.println("\n--- Lista de Produtos (Ordenada por quantidade) ---");
+        for (Produto p : listaCopiada) {
+            System.out.println(p);
+        }
+        System.out.println("------------------------------------------------------------------------------------------------");
+    }
+
+    public void listarProdutosOrdenadosPorAvaliacao() {
+        if (this.listaDeProdutos.isEmpty()) {
+            System.out.println("O estoque está vazio. Nada para ordenar.");
+            return;
+        }
+
+        ArrayList<Produto> listaCopiada = new ArrayList<>(this.listaDeProdutos);
+        InsertionSort.ordenarPorAvaliacao(listaCopiada);
+
+        System.out.println("\n--- Lista de produtos (ordenada por avaliação) ---");
+        for (Produto p : listaCopiada) {
+            System.out.println(p);
+        }
+        System.out.println("------------------------------------------------------------------------------------------------");
+    }
+
+    public void listarProdutosOrdenadosPorNome() {
+        if (this.listaDeProdutos.isEmpty()) {
+            System.out.println("O estoque está vazio. Nada para ordenar.");
+            return;
+        }
+
+        ArrayList<Produto> listaCopiada = new ArrayList<>(this.listaDeProdutos);
+        MergeSort.ordenarPorNome(listaCopiada);
+
+        System.out.println("\n--- Lista de produtos (Ordenada por nome alfabetica) ---");
         for (Produto p : listaCopiada) {
             System.out.println(p);
         }
