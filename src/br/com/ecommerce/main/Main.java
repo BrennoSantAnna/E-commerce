@@ -1,6 +1,5 @@
 package br.com.ecommerce.main;
 
-import br.com.ecommerce.algoritmos.ordenacao.BubbleSort;
 import br.com.ecommerce.model.Produto;
 import br.com.ecommerce.data.Estoque;
 
@@ -21,12 +20,13 @@ public class Main {
         estoque.adicionarProduto(p4);
         estoque.adicionarProduto(p5);
 
-        System.out.println("\n--- Teste de ordenação ---");
         System.out.println("\n*** Lista original (Ordem de cadastro) ***");
         estoque.listarTodosOsProdutos();
 
-        System.out.println("\n*** Lista ordenada por preço (Bubble sort) ***");
         estoque.listarProdutosOrdenadosPorPreco();
+        estoque.listarProdutosOrdenadosPorQuantidade();
+        estoque.listarProdutosOrdenadosPorAvaliacao();
+        estoque.listarProdutosOrdenadosPorNome();
 
         System.out.println("\n*** Lista original (verificando integridade) ***");
         estoque.listarTodosOsProdutos();
