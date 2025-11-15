@@ -20,15 +20,14 @@ public class Main {
         estoque.adicionarProduto(p4);
         estoque.adicionarProduto(p5);
 
-        System.out.println("\n*** Lista original (Ordem de cadastro) ***");
-        estoque.listarTodosOsProdutos();
+        System.out.println("\n--- Testando Busca Binária (com MergeSort) ---");
+        Produto resultadoBinario1 = estoque.buscarProdutoPorCodigoBuscaBinaria(5); // Busca o Perfume
+        System.out.println("Busca Binária pelo código 5: " + resultadoBinario1);
 
-        estoque.listarProdutosOrdenadosPorPreco();
-        estoque.listarProdutosOrdenadosPorQuantidade();
-        estoque.listarProdutosOrdenadosPorAvaliacao();
-        estoque.listarProdutosOrdenadosPorNome();
+        Produto resultadoBinario2 = estoque.buscarProdutoPorCodigoBuscaBinaria(1); // Busca o Notebook
+        System.out.println("Busca Binária pelo código 1: " + resultadoBinario2);
 
-        System.out.println("\n*** Lista original (verificando integridade) ***");
-        estoque.listarTodosOsProdutos();
+        Produto resultadoBinario3 = estoque.buscarProdutoPorCodigoBuscaBinaria(99); // Busca 99
+        System.out.println("Busca Binária pelo código 99: " + resultadoBinario3);
     }
 }
