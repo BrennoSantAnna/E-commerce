@@ -20,7 +20,7 @@ public class SelectionSort {
                 }
             }
 
-            if (indiceDoMenor != 1) {
+            if (indiceDoMenor != i) {
                 Produto temp = lista.get(indiceDoMenor);
                 lista.set(indiceDoMenor, lista.get(i));
                 lista.set(i, temp);
