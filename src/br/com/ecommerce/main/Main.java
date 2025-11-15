@@ -2,32 +2,13 @@ package br.com.ecommerce.main;
 
 import br.com.ecommerce.model.Produto;
 import br.com.ecommerce.data.Estoque;
+import br.com.ecommerce.view.MenuConsole;
 
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Produto p1 = new Produto(1, "Notebook", "Eletronicos", 10, 3599.00, 4.6);
-        Produto p2 = new Produto(2, "Mouse", "Eletronicos", 15, 247.00, 4.1);
-        Produto p3 = new Produto(3, "Monitor", "Eletronicos", 5, 1599.00, 4.9);
-        Produto p4 = new Produto(4, "Perfume", "Beleza", 30, 85.00, 3.7);
-        Produto p5 = new Produto(5, "Banana", "Frutas", 20, 2.99, 3.9);
-
-        Estoque estoque = new Estoque();
-        estoque.adicionarProduto(p1);
-        estoque.adicionarProduto(p2);
-        estoque.adicionarProduto(p3);
-        estoque.adicionarProduto(p4);
-        estoque.adicionarProduto(p5);
-
-        System.out.println("\n--- Testando Busca Binária (com MergeSort) ---");
-        Produto resultadoBinario1 = estoque.buscarProdutoPorCodigoBuscaBinaria(5); // Busca o Perfume
-        System.out.println("Busca Binária pelo código 5: " + resultadoBinario1);
-
-        Produto resultadoBinario2 = estoque.buscarProdutoPorCodigoBuscaBinaria(1); // Busca o Notebook
-        System.out.println("Busca Binária pelo código 1: " + resultadoBinario2);
-
-        Produto resultadoBinario3 = estoque.buscarProdutoPorCodigoBuscaBinaria(99); // Busca 99
-        System.out.println("Busca Binária pelo código 99: " + resultadoBinario3);
+       MenuConsole menu = new MenuConsole();
+       menu.iniciar();
     }
 }
