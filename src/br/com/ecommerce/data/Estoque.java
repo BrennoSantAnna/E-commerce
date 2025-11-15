@@ -1,9 +1,8 @@
 package br.com.ecommerce.data;
 
-import br.com.ecommerce.algoritmos.ordenacao.MergeSort;
-import br.com.ecommerce.algoritmos.ordenacao.InsertionSort;
-import br.com.ecommerce.algoritmos.ordenacao.SelectionSort;
-import br.com.ecommerce.algoritmos.ordenacao.BubbleSort;
+import br.com.ecommerce.algoritmos.busca.BuscaBinaria;
+import br.com.ecommerce.algoritmos.ordenacao.*;
+import br.com.ecommerce.algoritmos.ordenacao.*;
 import br.com.ecommerce.model.Produto;
 import java.util.ArrayList;
 
@@ -44,6 +43,13 @@ public class Estoque {
             }
         }
         return null;
+    }
+
+    public Produto buscarProdutoPorCodigoBuscaBinaria(int codigoBuscado) {
+        ArrayList<Produto> listaCopiada = new ArrayList<>(this.listaDeProdutos);
+        MergeSort.ordenarPorCodigo(listaCopiada);
+        Produto resultado = BuscaBinaria.buscar(listaCopiada, codigoBuscado);
+        return resultado;
     }
 
     public ArrayList<Produto> buscarPorCategoria(String categoriaBuscada) {
