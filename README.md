@@ -101,3 +101,7 @@ O projeto foi organizado em pacotes para separar as responsabilidades (Separaç�
 │           ├── InsertionSort.java
 │           └── MergeSort.java
 ```
+
+## License
+This software is available under the follwing licenses:
+- [MIT](https://rem.mit-license.org)
