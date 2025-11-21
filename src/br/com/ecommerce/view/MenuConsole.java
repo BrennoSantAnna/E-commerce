@@ -2,10 +2,13 @@ package br.com.ecommerce.view;
 
 import br.com.ecommerce.model.Produto;
 import br.com.ecommerce.data.Estoque;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe responsável pela interação com o usuário
+ * Gerencia inputs e chama os métodos do controlador (estoque)
+ */
 public class MenuConsole {
     private Estoque estoque;
     private Scanner scanner;
@@ -17,13 +20,13 @@ public class MenuConsole {
 
     public void iniciar() {
         int opcao;
-
+        // Loop infinito para manter o menu ativo até o usuário decidir sair
         while (true) {
             exibirMenu();
-
             try {
                 opcao = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
+                // Tratamento de erro para evitar crash se o usuário digitar letras
                 System.out.println("Erro: Por gentileza, informe um número válido.");
                 opcao = -1;
             }
@@ -32,65 +35,34 @@ public class MenuConsole {
     }
 
     private void exibirMenu() {
-        System.out.println("\n--- Sistema de Controle de Estoque ---");
-        System.out.println("1. Adicionar produto");
-        System.out.println("2. Remover produto (por código)");
-        System.out.println("3. Buscar produto por Código (Busca Binária)");
-        System.out.println("4. Buscar produto por Nome (Busca Linear)");
-        System.out.println("5. Buscar produto por Categoria (Busca Linear)");
-        System.out.println("6. Listar todos os produtos (Ordem de cadastro)");
-        System.out.println("--- Listar ordenado por ---");
-        System.out.println("7. Preço (BubbleSort)");
-        System.out.println("8. Quantidade (SelectionSort)");
-        System.out.println("9. Avaliação (InsertionSort)");
-        System.out.println("10. Nome (MergeSort)");
-        System.out.println("-----------------------------------------------");
-        System.out.println("0. Sair do sistema");
-        System.out.print("\nEscolha uma opção: ");
+        System.out.println("\n=== SISTEMA DE CONTROLE DE ESTOQUE ===");
+        System.out.println("1. Adicionar produto | 2. Remover produto | 3. Busca Binária (Código)");
+        System.out.println("4. Busca Nome | 5. Busca Categoria | 6. Listar Todos os Produtos");
+        System.out.println("=== ORDENAÇÕES ===");
+        System.out.println("7. Preço | 8. Quantidade | 9. Avaliação | 10. Nome");
+        System.out.println("0. Sair");
+        System.out.print("Escolha uma opção: ");
     }
 
     private void processarOpcao(int opcao) {
         switch (opcao) {
-            case 1:
-                adicionarProduto();
-                break;
-            case 2:
-                removerProduto();
-                break;
-            case 3:
-                buscarPorCodigo();
-                break;
-            case 4:
-                buscarPorNome();
-                break;
-            case 5:
-                buscarPorCategoria();
-                break;
-            case 6:
-                estoque.listarTodosOsProdutos();
-                break;
-            case 7:
-                estoque.listarProdutosOrdenadosPorPreco();
-                break;
-            case 8:
-                estoque.listarProdutosOrdenadosPorQuantidade();
-                break;
-            case 9:
-                estoque.listarProdutosOrdenadosPorAvaliacao();
-                break;
-            case 10:
-                estoque.listarProdutosOrdenadosPorNome();
-                break;
+            case 1: adicionarProduto(); break;
+            case 2: removerProduto(); break;
+            case 3: buscarPorCodigo(); break;
+            case 4: buscarPorNome(); break;
+            case 5: buscarPorCategoria(); break;
+            case 6: estoque.listarTodosOsProdutos(); break;
+            case 7: estoque.listarProdutosOrdenadosPorPreco(); break;
+            case 8: estoque.listarProdutosOrdenadosPorQuantidade(); break;
+            case 9: estoque.listarProdutosOrdenadosPorAvaliacao(); break;
+            case 10: estoque.listarProdutosOrdenadosPorNome(); break;
             case 0:
                 System.out.println("Saindo do sistema... Até logo!");
                 scanner.close();
                 System.exit(0);
                 break;
             default:
-                if (opcao != -1) {
-                    System.out.println("Opção inválida. Tente novamente.");
-                }
-                break;
+                if (opcao != -1) System.out.println("Opção inválida. Tente novamente.");
         }
         System.out.print("\nPressione Enter para continuar...");
         scanner.nextLine();
@@ -98,8 +70,8 @@ public class MenuConsole {
 
     private void adicionarProduto() {
         System.out.println("\n--- Adicionar novo produto ---");
-
         try {
+            // Conversão explícita de tipos para garantir a integridade do modelo
             System.out.print("Digite o Código (número): ");
             int codigo = Integer.parseInt(scanner.nextLine());
 
@@ -118,78 +90,44 @@ public class MenuConsole {
             System.out.print("Digite a Avaliação (ex: 4.5): ");
             double avaliacao = Double.parseDouble(scanner.nextLine());
 
-            Produto novoProduto = new Produto(codigo, nome, categoria, quantidade, preco, avaliacao);
-
-            estoque.adicionarProduto(novoProduto);
+            Produto p = new Produto(codigo, nome, categoria, quantidade, preco, avaliacao);
+            estoque.adicionarProduto(p);
 
         } catch (NumberFormatException e) {
-            System.out.println("Erro de entrada: Código, quantidade, preço e avaliação devem ser números válidos.");
+            System.out.println("Erro de entrada: Certifique-se de usar ponto (.) para decimais e apenas números onde solicitado.");
         } catch (Exception e) {
-            System.out.println("Ocorreu um erro ao adicionar o produto: " + e.getMessage());
+            System.out.println("Erro inesperado: " + e.getMessage());
         }
     }
 
     private void removerProduto() {
-        System.out.println("\n--- Remover produto ---");
-        System.out.print("Digite o Código do produto a remover: ");
-
+        System.out.print("Digite o Código para remover: ");
         try {
-            int codigo = Integer.parseInt(scanner.nextLine());
-            estoque.removerProduto(codigo);
-        } catch (NumberFormatException e) {
-            System.out.println("Erro: O código deve ser um número.");
-        }
+            estoque.removerProduto(Integer.parseInt(scanner.nextLine()));
+        } catch (NumberFormatException e) { System.out.println("Erro: Código inválido"); }
     }
 
     private void buscarPorCodigo() {
-        System.out.println("\n--- Buscar por Código (Busca Binária) ---");
-        System.out.print("Digite o Código do produto: ");
-
+        System.out.print("Digite o Código: ");
         try {
             int codigo = Integer.parseInt(scanner.nextLine());
-            Produto resultado = estoque.buscarProdutoPorCodigoBuscaBinaria(codigo);
-
-            if (resultado != null) {
-                System.out.println("Produto encontrado: " + resultado);
-            } else {
-                System.out.println("Produto com código " + codigo + " não encontrado.");
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Erro: O código deve ser um número");
-        }
+            Produto p = estoque.buscarProdutoPorCodigoBuscaBinaria(codigo);
+            System.out.println(p != null ? "Encontrado: " + p : "Não encontrado.");
+        } catch (NumberFormatException e) { System.out.println("Erro: O código deve ser um número"); }
     }
 
     private void buscarPorNome() {
-        System.out.println("\n--- Buscar por Nome (Busca Linear) ---");
-        System.out.print("Digite o Nome (ou parte) do produto: ");
-        String nome = scanner.nextLine();
-
-        ArrayList<Produto> resultados = estoque.buscarPorNome(nome);
-
-        if (resultados.isEmpty()) {
-            System.out.println("Nenhum produto encontrado com o nome '" + nome + "'.");
-        } else {
-            System.out.println("Produtos encontrados (" + resultados.size() + "):");
-            for (Produto p : resultados) {
-                System.out.println(p);
-            }
-        }
+        System.out.print("Nome: ");
+        listarResultado(estoque.buscarPorNome(scanner.nextLine()));
     }
 
     private void buscarPorCategoria() {
-        System.out.println("\n--- Buscar por Categoria (Busca Linear) ---");
-        System.out.print("Digite a Categoria do produto: ");
-        String categoria = scanner.nextLine();
+        System.out.print("Categoria: ");
+        listarResultado(estoque.buscarPorCategoria(scanner.nextLine()));
+    }
 
-        ArrayList<Produto> resultados = estoque.buscarPorCategoria(categoria);
-
-        if (resultados.isEmpty()) {
-            System.out.println("Nenhum produto encontrado na categoria '" + categoria + "'.");
-        } else {
-            System.out.println("Produtos encontrados (" + resultados.size() + "):");
-            for (Produto p : resultados) {
-                System.out.println(p);
-            }
-        }
+    private void listarResultado(ArrayList<Produto> lista) {
+        if (lista.isEmpty()) System.out.println("Nenhum registro encontrado.");
+        else for (Produto p : lista) System.out.println(p);
     }
 }
