@@ -17,44 +17,21 @@ public class Produto {
         this.avaliacao = avaliacao;
     }
 
-    public int getCodigo() {
-        return codigo;
-    }
-    public String getNome() {
-        return nome;
-    }
-    public void setNome() {
-        this.nome = nome;
-    }
-    public String getCategoria() {
-        return categoria;
-    }
-    public void setCategoria() {
-        this.categoria = categoria;
-    }
-    public int getQuantidade() {
-        return quantidade;
-    }
-    public void setQuantidade() {
-        this.quantidade = quantidade;
-    }
-    public double getPreco() {
-        return preco;
-    }
-    public void setPreco() {
-        this.preco = preco;
-    }
-    public double getAvaliacao() {
-        return avaliacao;
-    }
-    public void setAvaliacao() {
-        this.avaliacao = avaliacao;
-    }
+    public int getCodigo() { return codigo; }
+    public String getNome() { return nome; }
+    public void setNome() { this.nome = nome; }
+    public String getCategoria() { return categoria; }
+    public void setCategoria() { this.categoria = categoria; }
+    public int getQuantidade() { return quantidade; }
+    public void setQuantidade() { this.quantidade = quantidade; }
+    public double getPreco() { return preco; }
+    public void setPreco() { this.preco = preco; }
+    public double getAvaliacao() { return avaliacao; }
+    public void setAvaliacao() { this.avaliacao = avaliacao; }
 
-    @Override
     public String toString() {
         return String.format(
-                "Código: %d, Nome: '%s', Categoria: '%s', Qtd: %d, Preço: R$ %.2f, Avaliação: %.1f",
+                "| ID: %d | %-20s | Categoria: %-10s | Quantidade: %d | R$ %.2f | ★ %.1f |",
                 codigo, nome, categoria, quantidade, preco, avaliacao
         );
     }
