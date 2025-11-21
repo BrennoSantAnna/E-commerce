@@ -7,7 +7,7 @@ O sistema é executado inteiramente via console e permite gerenciar o cadastro d
 e ordenações com base em múltiplos critérios.
 
 ## Tech Stack
-[![My Skills](https://skillicons.dev/icons?i=java)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=java,linux)](https://skillicons.dev)
 ## Funcionalidades
 O sistema permite ao usuário realizas as seguintes ações através de um menu interativo no console:
 * **Adicionar produtos**: Cadastrar novos produtos no estoque 
